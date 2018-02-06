@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script type="text/javascript" src="javascripts/jquery-3.1.0.min.js"></script>
+
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+</head>
+<body>
+<header class="header clearfix">
+    <div class="left">
+        <div class="logo"><a href="/"><img src="images/yelp_logo.png"></a></div> <!-- end .logo -->
+    </div>
+    <div class="right">
+        <% if (typeof user == 'undefined') {
+        %>
+        <a href="/register" class="button">Register</a>
+        <a href="/login" class="button">Log In</a>
+        <% } else { %>
+        <h5><%= "Hello, " + user.username + "!"%></h5>
+        <a href="/logout" class="button">Logout</a>
+        <%
+        }%>
+    </div>
+
+</header> <!-- end .header -->
+<div class="fullscreen-section">
+    <div class="left">
+        <div id="googleMap" style="margin:0 auto; width:85%;height:400px;"></div>
+        <script>
+            function myMap() {
+                var mapProp = {
+                    center: new google.maps.LatLng(39.9526, -75.1652),
+                    zoom: 13,
+                };
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                var infoWindow = new google.maps.InfoWindow({map: map});
+                var lat = "<%= lat %>";
+                var long = "<%= long %>";
+                var lat_new = lat.split(",");
+                var long_new = long.split(",");
+                var Center = new google.maps.LatLng(lat_new[0],long_new[0]); 
+                map.setCenter(Center);
+                for (var i = 0; i < lat_new.length; i++) {
+                    var myCenter = new google.maps.LatLng(lat_new[i], long_new[i]);
+                    var marker = new google.maps.Marker({position: myCenter});
+                    marker.setMap(map);
+                }
+                
+                
+            }
+            
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5i_1uIPisbMa6I2i6lOIjR1KFnCANd44&callback=myMap"></script>
+        <h2 class="text-center">Near by the <%= thisname %></h2>
+        <% results.forEach(function (user) { %>
+        <p class = "text-center"><a class = "loadmore"><%= user.name %></a></p>
+        <% }) %>
+        <p id = "loadmorebutton1" type = "button" class = "text-right"><a>Show all</a></p>
+        <script>
+                $(".loadmore").hide();
+                 $(".loadmore").slice(0, 5).show();
+                 $("#loadmorebutton1").on('click', function (e) {
+                 e.preventDefault();
+                 $(".loadmore").slice(0, -1).show();
+                  $("#loadmorebutton1").hide();
+                  }); 
+        </script>
+    </div> <!-- end .left -->
+    <div class="center">
+        <div class="inner">
+        
+            <p><a> There are <%= count %> reviews for <%= thisname %> </a></p>
+            <% var i = 1; review.forEach(function (user) { var coun = i + ". ";%>
+            <div class="blog-grid">
+                <div class="directory-item">
+                    <div class="rating"><%= user.stars %></div>
+                    <div class="content">
+                        <p><h6><%= user.name %></h6></p>
+                        <p><%= user.review %></p>
+                    </div> <!-- end .content -->
+                    <div class="blog-page-grids">
+                        <div class="clearfix"></div>
+                    </div>
+                </div> <!-- end .directory-item -->
+            </div>
+            <% i += 1}) %>
+            <div class="text-center">
+                            <a href="" id="blog-load-more" class="button">LOAD MORE</a>
+                    </div> <!-- end .blog-load-more -->
+            <p><h6 class="text-center"> Add review </h6></p>
+            
+            <a href="https://twitter.com/intent/tweet?button_hashtag=Love" id = "tw" class="twitter-hashtag-button" data-show-count="false">Tweet #LoveTwitter</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+            <p><a id = "tw2" href="https://twitter.com/search?f=tweets&q=%23china" target = "_blank">Visit more in twitter</a></p>
+
+            <script type="text/javascript">
+                var link = JSON.stringify("<%= thisname %>");
+                var link2 = link.slice(1,-1);
+                link2 = link2.replace(/\s+/g, '');
+                $("#tw2").attr("href", "https://twitter.com/search?f=tweets&q=%23".concat(link2));
+            </script>
+
+
+            <script type="text/javascript">
+                var link = JSON.stringify("<%= thisname %>");
+                var link2 = link.slice(1,-1);
+                link2 = link2.replace(/\s+/g, '');
+                $("#tw").attr("href", "https://twitter.com/intent/tweet?button_hashtag=Love".concat(link2));
+            </script>
+            
+            <form method="get", action="/insertReview">
+                <textarea name="usersReview">Start Review now!</textarea>
+                <div id="startone" class="block clearfix", style = "margin-left: auto; margin-right: auto;">
+                    <div class="star_score"></div>
+                    <textarea type = "text", readonly = "readonly", class="fenshu", name = "stars"></textarea>
+                    <span class="fenshu"> </span>
+                    <div class="attitude"></div>
+                </div>
+                <script type="text/javascript" src="javascripts/startScore.js"></script>
+                <script>
+                    scoreFun($("#startone"))
+                    scoreFun($("#starttwo"), {
+                        fen_d: 22,//每一个a的宽度
+                        ScoreGrade: 5//a的个数 10或者
+                    })
+                </script>
+                <script>
+                    //显示分数
+                    $(".show_number li p").each(function (index, element) {
+                        var num = $(this).attr("tip");
+                        var www = num * 2 * 16;//
+                        $(this).css("width", www);
+                        $(this).parent(".atar_Show").siblings("textarea").text(num + "分");
+                        $(this).parent(".atar_Show").siblings("span").text(num + "分");
+                    });
+                </script>
+
+                
+                <% if (typeof user == 'undefined') {
+                    %>
+                    <p><a class = "text-center"><a href="/login" classx="button">Log in before review</a></a></p>
+                    <% } else { %>
+                    <p><h6 class = "text-center"><input class="button" type="submit" value="Submit"></h6></p>
+                    <%
+                    }%>
+            </form>
+        </div> <!-- end .inner -->
+    </div> <!-- end .right -->
+    <div class = centerleft>
+    <h2 class="text-center">Business info</h2>
+    <ul>
+        <% businessInfo.forEach(function (user) { %>
+        <p><a><%= user %></a></p>
+        <% }) %>
+    </ul>
+    </div>
+
+</div> <!-- end .section -->
+
+
+<!-- Bootstrap -->
+
+<script src="javascripts/owl.carousel.min.js"></script>
+<!-- Countdown -->
+<script src="javascripts/countdown.js"></script>
+<!-- Sweet Alert -->
+
+<script src="/Nivo-Lightbox/nivo-lightbox.min.js"></script>
+<!-- NoUISlider -->
+
+<script src="javascripts/scripts.js"></script>
+
+</body>
+</html>
+
+      

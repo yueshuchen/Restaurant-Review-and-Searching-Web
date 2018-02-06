@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Group17</title>
+		<link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+		<link href="stylesheets/style.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	</head>
+	<body>
+	    <header class="header">
+			<div class="left">
+				<div class="logo"><a href="/"><img src="images/Yelp_logo.png"></a></div> 
+			</div> 
+			<div class="right">
+				<% if (typeof user == 'undefined') {
+				%>
+				<a href="/register" class="button">Register</a>
+				<a href="/login" class="button">Log In</a>
+				<% } else { %>
+				<h5><%= "Hello, " + user.username + "!"%></h5>
+				<a href="/logout" class="button">Logout</a>
+				<%
+				}%>
+			</div> <!-- end .left -->
+		</header> <!-- end .header -->
+		<div class="section large transparent text-center" style="background-image: url('images/background01.jpg');">
+			<div class="inner">
+				<div class="container">
+					<h1>Find your favorite</h1>
+					<!-- <p class="lead">Find great places to stay, eat, shop, or visit from local experts.</p> -->
+					<form method = "get">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="form-group">
+									<input type="text" name = "name" placeholder="What are you looking for?">
+								</div> <!-- end .form-group -->
+							</div> <!-- end .col-sm-4 -->
+							<div class="col-sm-4">
+								<div class="form-group">
+									<input type="text" name = "location" placeholder="city">
+									<i class="pe-7s-world"></i>
+								</div> <!-- end .form-group -->
+							</div> <!-- end .col-sm-4 -->
+							<div class="col-sm-4">
+								<div class="form-group">
+									<input type="text" name = "state" placeholder="state" maxlength="2">
+									<i class="pe-7s-world"></i>
+								</div> <!-- end .form-group -->
+							</div> <!-- end .col-sm-4 -->
+
+								<div class="col-sm-4">
+								<div class="form-group">
+									<select name = "sort">
+									    <option>Sort by</option>
+										<option>stars high-low</option>
+										<option>stars low-high</option>
+										<option>name (A-Z)</option>
+									</select>
+								</div> <!-- end .form-group -->
+  								</div> <!-- end .col-sm-4      window.open('list.html');      -->
+						</div> <!-- end .row -->
+						<div class="row">
+						               <h5>Filter by</h5>
+						               <input type="checkbox" value="card" id="checkbox1" name="card" />
+  		                               <label><h5>Accept Credit Card</h5></label>
+  		                               <input type="checkbox" value="park" id="checkbox2" name="park" />
+  		                               <label><h5> Parking </h5></label>
+  		                               <input type="checkbox" value="appo" id="checkbox3" name="appo" />
+  		                               <label><h5>Accept Appointment</h5></label>
+						</div>
+						<input class = "button" type = "submit" formaction = "/search" value = "Search">
+						<input class = "button" type = "submit" formaction = "/bing" value = "Bing Search">
+					</form>
+				</div> <!-- end .container -->
+			</div> <!-- end .inner -->
+		</div> <!-- end .section -->
+	
+<div class="twitterborder">
+    <div class="table">
+        <div class="table-cell">	
+<a class="twitter-timeline tw-align-center" href="https://twitter.com/hashtag/Yelp" data-widget-id="856955267375931399">#Yelp Tweets</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+</div>
+</div>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+  
+        <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+        <link href="stylesheets/style.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    </head>
+    <body>
+    <header class="header clearfix">
+            <div class="left">
+                <div class="logo"><a href="/"><img src="images/yelp_logo.png"></a></div> <!-- end .logo -->
+            </div> <!-- end .left -->
+        </header>
+        <div class="fullscreen-section">
+         <div class="register">
+            <div class="container">
+                    <p><h2>Your account</h2></p>
+                    <div class="login-form-grids">
+                    <% if (typeof errors != 'undefined') {
+                        errors.forEach(function (user) { %>
+                    <h4><%= user.msg + "!"%></h4>
+                    <% })} %>
+                    <div class = "changepass">
+                    <p><h7>Username: </h7></p>
+                    <h7>6666666666666</h7>
+                    <p><h7>Email: </h7></p>
+                    <p><h7>6666666666666</h7></p>
+                    <input class = "button" id = "btn1" type="submit" value="change password">
+                    </div>
+                    <script>
+                    $(document).ready(function(){
+                        $("#btn1").click(function(){
+                             $(".changepass").hide();
+                             $(".showpassword").show()
+                         });
+                    
+                        });
+                    </script>
+                    <div class = "showpassword">
+                    <form method="get" action="/reg">
+                        <input type="password" class="form-control" placeholder="Your old password" name="password0">
+                        <h7>New password</h7>
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                        <input type="password" class="form-control" placeholder="Comfirmed Password" name="password2">
+                        <input class = "button" type="submit" value="Updated">
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+</html> 
+      

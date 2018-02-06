@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+  
+        <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+        <link href="stylesheets/style.css" rel="stylesheet">
+    </head>
+    <body>
+    <header class="header clearfix">
+            <div class="left">
+                <div class="logo"><a href="/"><img src="images/yelp_logo.png"></a></div> <!-- end .logo -->
+            </div> <!-- end .left -->
+        </header>
+        <div class="fullscreen-section">
+         <div class="register">
+            <div class="container">
+                <h2>Register Here</h2>
+                <div class="login-form-grids">
+                    <% if (typeof errors != 'undefined') {
+                        errors.forEach(function (user) { %>
+                    <h4><%= user.msg + "!"%></h4>
+                    <% })} %>
+                    <p>Alaready have an account ? <a href="/login">log in</a></p>
+                    <h7>profile information</h7>
+                    <form method="get" action="/reg">
+                        <input type="text" class="form-control" placeholder="Name" name="name">
+                        <input type="text" class="form-control" placeholder="Username" name="username">
+                        <h7>Login information</h7>
+                        <input type="email" class="form-control" placeholder="Email" name="email">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                        <input type="password" class="form-control" placeholder="Password" name="password2">
+                        <input class = "button" type="submit" value="Register">
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+</html> 
+      

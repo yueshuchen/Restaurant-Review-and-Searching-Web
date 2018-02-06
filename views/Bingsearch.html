@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+  
+		<link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+		<link href="stylesheets/style.css" rel="stylesheet">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	</head>
+	<body>
+		<header class="header clearfix">
+			<div class="left">
+				<div class="logo"><a href="/"><img src="images/yelp_logo.png"></a></div> <!-- end .logo -->
+			</div> <!-- end .left -->
+		</header> <!-- end .header -->
+		<div class="fullscreen-section">
+			<div class="newcenter">
+				<div class="inner">
+					<% var i = 1; results.forEach(function (user) { var coun = i + ". ";%> 
+					<div class = "blog-grid">
+					     <div class="directory-item">    
+								<a href = '<%= user.url %>' target = "_blank" class= "lala"><%= user.name %></a>
+								<p class= "lala"><%= user.snippet %></p>			
+							<div class="blog-page-grids">
+								<div class="clearfix"> </div>
+							</div>
+					    </div> <!-- end .directory-item -->
+					</div>
+					<% i += 1}) %>
+					<div class="text-center">
+							<a href="" id="blog-load-more" class="button">LOAD MORE</a>
+				    </div> <!-- end .blog-load-more -->
+			 </nav>
+				</div> <!-- end .inner -->
+			</div> <!-- end .right -->
+		</div> <!-- end .section -->
+
+
+		<script src="javascripts/jquery-3.1.0.min.js"></script>
+		<!-- Bootstrap -->
+
+		<script src="javascripts/owl.carousel.min.js"></script>
+		<!-- Countdown -->
+		<script src="javascripts/countdown.js"></script>
+		<!-- Sweet Alert -->
+		
+		<script src="/Nivo-Lightbox/nivo-lightbox.min.js"></script>
+		<!-- NoUISlider -->
+		
+		<script src="javascripts/scripts.js"></script>
+
+	</body>
+</html>

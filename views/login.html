@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+        <link href="stylesheets/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <header class="header clearfix">
+            <div class="left">
+                <div class="logo"><a href="/"><img src="images/yelp_logo.png"></a></div> <!-- end .logo -->
+            </div> <!-- end .left -->
+        </header>
+        <div class="fullscreen-section">
+            <div class="register">
+                <div class="container">
+                    <h2>Login here</h2>
+                    <div class="login-form-grids">
+                        <% if (typeof errors != 'undefined') {
+                           errors.forEach(function (user) { %>
+                     <h4><center><%= user.msg %></center></h4>
+                        <% })} %>
+                        <p>Don't have an account ? <a href="/register">Sign up</a></p>
+                        <p><center>Connect with Social Networks</center> </p>
+                        <center>
+                            <a href="/auth/login"><img src="images/google-plus.png" alt="google plus"></a></center>
+                         <p><center> OR </center></p>
+                         <form method="get" action="/loginto">
+                           <input type="text" class="form-control" placeholder="Username" name="login_username">
+                           <input type="password" class="form-control" placeholder="Password" name="login_password">
+                          <input class = "button" type="submit" value="Login">
+                     </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html> 
+      
